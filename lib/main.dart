@@ -22,10 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Horizontal Bar',
       home: MyHomePage(
-        title: 'Flutter Demo Home Page',
+        title: 'Dynamic Horizontal Bar',
         dataSet: dataSet,
+        height: 40,
       ),
     );
   }
@@ -52,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
@@ -78,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               alignment: Alignment.center,
                               duration: const Duration(seconds: 2),
                               height: selectedBar == widget.dataSet.indexOf(e)
-                                  ? 25
-                                  : 20,
+                                  ? (widget.height)
+                                  : widget.height - 10,
                               width: ((e.individualNumber *
                                   (MediaQuery.of(context).size.width) /
                                   widget.dataSet.fold(
